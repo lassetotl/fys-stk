@@ -1,0 +1,99 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,graphicx,varioref,verbatim,amsfonts,geometry}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{textcomp}
+\usepackage[english,norsk]{babel}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{lastpage}
+\usepackage{graphicx}
+
+
+
+\pagestyle{fancy}
+
+
+%% Double underline 
+\def\dubline#1{\underline{\underline{#1}}}
+
+%% Matrix
+\newcommand\SmallMatrix[1]{{%
+		\arraycolsep=0.3\arraycolsep\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}}
+	
+%% Codeinsert
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	language=python,
+	basicstyle=\scriptsize,
+	upquote=true,
+	aboveskip={1.5\baselineskip},
+	columns=fixed,
+	numbers=left,
+	showstringspaces=false,      
+	extendedchars=true,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	frame=single,
+	showtabs=false,
+	showspaces=false,
+	showstringspaces=false,
+	identifierstyle=\ttfamily,
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941}
+}
+\newcounter{subproject}
+\renewcommand{\thesubproject}{\alph{subproject}}
+\newenvironment{subproj}{
+	\begin{description}
+		\item[\refstepcounter{subproject}(\thesubproject)]
+	}{\end{description}}
+
+%% Numbered exercises
+\newcounter{excount}[chapter]
+\newenvironment{exercise}[1][]{\addtocounter{excount}{1} \noindent {\bf Oppgave
+		\arabic{excount} \ \ #1}\hspace{2mm}}{\vspace{4mm}}
+	
+% } etter 2mm
+
+\begin{document}
+\title{FYS-STK4155 - Project 1}
+\author{Lasse Totland, Domantas Sakalys, Andreas Lie Massey, Synne Mo Sandnes}
+\fancyhead[L]{FYS-STK4155 - Project 1}
+\fancyhead[C]{UiO}
+\fancyhead[R]{Totland, Sakalys, Massey, Sandnes}
+\cfoot{\thepage\ of \pageref{LastPage}}
+\maketitle
+
+\item[\bf{Oppgave 1}]
+
+
+    We have made the assumption that our data can be described by a continous function $f(\textbf{x})$ and a normal distribution $\epsilon - N(0, \sigma^2)$
+
+	\begin{enumerate}
+
+    \begin{equation}
+        \textbf{y} = f(\textbf{x}) + \epsilon
+    \end{equation}
+
+    
+
+
+
+    \mathbb{E}
+	%\lstinputlisting[language=Python]{oppgaveE.py}
+			
+	%\includegraphics[width=15cm]{Bilder/1.pdf}
+	
+		\end{enumerate}
+\end{document}
