@@ -1,3 +1,6 @@
 Huskeliste:
 
 * Diskutere om at det ikke er vits med høyere grad enn 5 for oppg. b). 
+  * Diskutere var(beta), confidence intervals og relasjon til overfitting
+  
+* Før levering: sjekk at alle figurer er referert til i tekst, på rett sted
