@@ -1,5 +1,8 @@
 Huskeliste:
 
+* Skrive!
+https://www.overleaf.com/7276787724sgtxfvhbbfjt
+
 * Diskutere om at det ikke er vits med høyere grad enn 5 for oppg. b). 
   * Diskutere var(beta), confidence intervals og relasjon til overfitting
   
@@ -9,3 +12,4 @@ Huskeliste:
 
 Lav prioritet:
 * Sjekk utledning av cost function, appendiks A (https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff#:~:text=In%20statistics%20and%20machine%20learning,bias%20in%20the%20estimated%20parameters.)
+* Skarpere figur 2 i rapport
