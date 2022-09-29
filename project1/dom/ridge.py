@@ -43,8 +43,9 @@ def create_X(x, y, n): #design matrices for polynomials up to 10th degree
     return X
 
 
+
 # Making meshgrid of datapoints and compute Franke's function
-n = 5 #in task b; up to 5 (this affects the approximate terrain plot)
+n = 2 #in task b; up to 5 (this affects the approximate terrain plot)
 N = 100
 x = np.sort(np.random.uniform(0, 1, N))
 y = np.sort(np.random.uniform(0, 1, N))
@@ -59,6 +60,7 @@ noise = noise.reshape(len(x_), len(x_))
 z = FrankeFunction(x_, y_) + noise #Franke with noise
 
 X = create_X(x_, y_, n)
+
 
 # We split the data in test and training data, 20%
 X_train, X_test, z_train, z_test = train_test_split(X, np.ravel(z), test_size=0.2)
@@ -76,45 +78,29 @@ lambdas = np.logspace(-10,10, nlambdas)
 
 for i in range(nlambdas):
     lmb = lambdas[i]
-    RidgeBeta = np.linalg.inv(X_train.T@X_train + lmb*I) @ X_train.T @ z_train
+    RidgeBeta = np.linalg.inv(X_train.T@X_train) @ X_train.T @ z_train
     zpredictRidge = X_train @ RidgeBeta
     MSEPredict[i] = MSE(z_train,zpredictRidge)
 
+
 plt.figure()
-plt.plot(np.log10(lambdas), MSEPredict, 'r--', label = 'MSE Ridge Train')
+#plt.plot(np.log10(lambdas), MSEPredict, 'r--', label = 'MSE Ridge Train')
 plt.xlabel('log10(lambda)')
 plt.ylabel('MSE')
 plt.legend()
 #plt.show()
 
-# lamb_opt = 0.397
-# RidgeBeta = np.linalg.inv(X.T@X + 0.397*I) @ X.T @ z
-# zpredictRidge = X_train @ RidgeBeta
-#
-# zmatrix = zpredictRidge.reshape(100,100)
-#
-#
-# print(np.size(zpredictRidge))
-# print(np.shape(zpre))
-#
-#
-# zmatrix = linreg.predict(X_train)
-# zmatrix = zmatrix.reshape(100,100)
+lamb_opt = 0.397
+
+zpredict_full = np.concatenate((zpredictRidge, z_test))
+
+zmatrix = zpredict_full.reshape(100,100)
 
 
-# fig = plt.figure(figsize = (13, 7))
-# ax = fig.add_subplot(projection='3d')
-# surf = ax.plot_surface(x_, y_, zpredictRidge, cmap = cm.coolwarm,
-# linewidth = 0, antialiased = False)
-#
-# #predict_surf = ax.plot_trisurf(x, y, zpredict, cmap = cm.coolwarm,
-# #linewidth = 0, antialiased = False)
-# # Customize the z axis.
-# ax.set_zlim(-0.10, 1.40)
-# ax.zaxis.set_major_locator(LinearLocator(10))
-# ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
-#
-# # Add a color bar which maps values to colors.
-# fig.colorbar(surf, shrink=0.5, aspect=5)
-# plt.title(f'OLS approximation at order n = {n}', fontsize = 15)
-# plt.show()
+fig = plt.figure(figsize = (13, 7))
+ax = fig.add_subplot(projection='3d')
+surf = ax.plot_surface(x_, y_, zmatrix)
+
+fig.colorbar(surf, shrink=0.5, aspect=5)
+plt.title(f'OLS approximation at order n = {n}', fontsize = 15)
+plt.show()
