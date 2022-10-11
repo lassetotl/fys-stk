@@ -16,7 +16,9 @@
 \usepackage{physics,amssymb}  % mathematical symbols (physics imports amsmath)
 \usepackage{graphicx}         % include graphics such as plots
 \usepackage{xcolor}           % set colors
-\usepackage{hyperref}         % automagic cross-referencing (this is GODLIKE)
+\usepackage{hyperref}    
+\usepackage{filecontents}
+% automagic cross-referencing (this is GODLIKE)
 \usepackage{tikz}             % draw figures manually
 \usepackage{listings}         % display code
 \usepackage{subfigure}        % imports a lot of cool and useful figure commands
@@ -81,7 +83,8 @@
 %%
 %% Don't ask me why, I don't know.
 \begin{document}
-\title{FYS-STK4155 H22: Project 1}
+\title{FYS-STK4155 H22: Project 1 \\ \vspace{}
+\large{Modelling 3D terrain using Linear Regression.}}
 \author{Lasse Totland, Domantas Sakalys, Synne Mo Sandnes}
 \date{\today}      % self-explanatory
 \noaffiliation                            % ignore this
@@ -167,7 +170,12 @@ $\beta$ is thus a column vector with an amount of scalar values $\beta_i \ (i \i
 \subsection{Ridge method}
 
 
-The matrix $X^TX$ may sometimes be singular, making it incapable of being inverted. The OLS method will not work in this case, as the matrix in equation \ref{ols} is inverted. This can be a result of independent variables having a high degree of correlation. Ridge regression can be used to make the matrix non-singular. A parameter $\lambda$ is then added to the diagonal.
+
+\footnote{\label{ref1} Morten Hjorth-Jensen. Applied Data Analysis and Machine Learning. Copyright 2021. \url{https://compphysics.github.io/MachineLearning/doc/LectureNotes/_build/html/intro.html}} The matrix $X^TX$ may sometimes be singular, making it incapable of being inverted. The OLS method will not work in this case, as the matrix in equation \ref{ols} is inverted. This can be a result of independent variables having a high degree of correlation. Ridge regression can be used to make the matrix non-singular. A parameter $\lambda$ is then added to the diagonal.
+
+
+
+
 
 
 
@@ -199,7 +207,7 @@ Here $I^{p \times p}$ is the identity matrix, and $\lambda \geq 0$ is a regulari
 
 \subsection{Lasso method}
 
-Another adaption of the linear regression is the Lasso regression ('Least Absolute Shrinkage and Selection Operator'). This method is used to get a more accurate prediction by changing the cost function. The result is a model more robust against overfitting. \\
+\footnotemark[\value{footnote}] Another adaption of the linear regression is the Lasso regression ('Least Absolute Shrinkage and Selection Operator'). This method is used to get a more accurate prediction by changing the cost function. The result is a model more robust against overfitting. \\
 
 The cost function for the Lasso method is defined
 
