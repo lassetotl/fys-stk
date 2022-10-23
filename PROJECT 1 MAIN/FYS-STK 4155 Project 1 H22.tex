@@ -16,7 +16,9 @@
 \usepackage{physics,amssymb}  % mathematical symbols (physics imports amsmath)
 \usepackage{graphicx}         % include graphics such as plots
 \usepackage{xcolor}           % set colors
-\usepackage{hyperref}         % automagic cross-referencing (this is GODLIKE)
+\usepackage{hyperref}    
+\usepackage{filecontents}
+% automagic cross-referencing (this is GODLIKE)
 \usepackage{tikz}             % draw figures manually
 \usepackage{listings}         % display code
 \usepackage{subfigure}        % imports a lot of cool and useful figure commands
@@ -81,8 +83,9 @@
 %%
 %% Don't ask me why, I don't know.
 \begin{document}
-\title{FYS-STK4155 H22: Project 1}
-\author{Lasse Totland, Domantas Sakalys, Andreas Lie Massey, Synne Mo Sandnes}
+\title{FYS-STK4155 H22: Project 1 \\ \vspace{}
+\large{Modelling 3D terrain using Linear Regression.}}
+\author{Lasse Totland, Domantas Sakalys, Synne Mo Sandnes}
 \date{\today}      % self-explanatory
 \noaffiliation                            % ignore this
 \begin{abstract} %abs?
@@ -156,9 +159,37 @@ $$\tilde{y} = \beta_0 + x\beta_1 + x^2\beta_2.$$
 
 $\beta$ is thus a column vector with an amount of scalar values $\beta_i \ (i \in [0, p])$ representing specific features. The OLS method defines it as:
 
-$$\beta^{OLS} = (X^TX)^{-1}X^Ty.$$
+
+
+\begin{align}
+    \label{ols}
+    \beta^{OLS} = (X^TX)^{-1}X^Ty.
+\end{align}
+
 
 \subsection{Ridge method}
+
+
+
+\footnote{\label{ref1} Morten Hjorth-Jensen. Applied Data Analysis and Machine Learning. Copyright 2021. \url{https://compphysics.github.io/MachineLearning/doc/LectureNotes/_build/html/intro.html}} The matrix $X^TX$ may sometimes be singular, making it incapable of being inverted. The OLS method will not work in this case, as the matrix in equation \ref{ols} is inverted. This can be a result of independent variables having a high degree of correlation. Ridge regression can be used to make the matrix non-singular. A parameter $\lambda$ is then added to the diagonal.
+
+
+
+
+
+
+
+For Ridge regression, the cost function is
+
+
+\begin{align}
+    C(\boldsymbol{\beta})=\sum_{i=0}^{p-1}(y_i-\beta_i)^2+\lambda\sum_{i=0}^{p-1}\beta_i^2,
+\end{align}
+
+
+Ridge regression reduces the values of of $\beta_i$  as a function of $\lambda$. \\ The Ridge penalty squares the individual model parameters. This indicates that the larger values are weighted significantly more heavily than the smaller ones. Thus, ridge regression prioritizes minimizing large model parameters over small model parametres. This is an advantage as long as the values we are working with are small, because then they don’t need to be reduced any further. 
+
+
 
 Ridge regression uses a modified definition of $\beta^{OLS}$:
 
@@ -168,11 +199,27 @@ Ridge regression uses a modified definition of $\beta^{OLS}$:
 \end{equation}
 
 
-Here $I^{p \times p}$ is the identity matrix, and $\lambda \geq 0$ is a regularization parameter that is basically used to fine tune the OLS regression model. If $\lambda = 0$, that means that the OLS model is a good model for the approximation; no fine-tuning required. 
+Here $I^{p \times p}$ is the identity matrix, and $\lambda \geq 0$ is a regularization parameter that is basically used to fine tune the OLS regression model. If $\lambda = 0$, that means that the OLS model is a good model for the approximation; no fine-tuning required. \\
+
+
+
+
 
 \subsection{Lasso method}
 
-Lasso regression ('Least Absolute Shrinkage and Selection Operator') uses a modified definition of $\beta$:
+\footnotemark[\value{footnote}] Another adaption of the linear regression is the Lasso regression ('Least Absolute Shrinkage and Selection Operator'). This method is used to get a more accurate prediction by changing the cost function. The result is a model more robust against overfitting. \\
+
+The cost function for the Lasso method is defined
+
+\begin{align}
+    C(\boldsymbol{\beta})=\sum_{i=0}^{p-1}(y_i-\beta_i)^2+\lambda\sum_{i=0}^{p-1}\vert\beta_i\vert \\ =\sum_{i=0}^{p-1}(y_i-\beta_i)^2+\lambda\sum_{i=0}^{p-1}\sqrt{\beta_i^2}
+\end{align}
+
+
+
+
+
+Lasso regression uses a modified definition of $\beta$:
 
 $$\beta^{Lasso}_i = \begin{cases}
     (y_i - \frac{\lambda}{2}), & \text{if  } y_i > \frac{\lambda}{2}\\
@@ -180,7 +227,15 @@ $$\beta^{Lasso}_i = \begin{cases}
     0, & \text{if  } \abs{y_i} \leq \frac{\lambda}{2}.
 \end{cases},$$
 
-where $\lambda$ is a regularization parameter as in the Ridge method.
+where $\lambda$ is a regularization parameter as in the Ridge method. \\
+
+
+Lasso regression sets values of $\beta_i$ to zero for specific values of $\lambda$. This is useful as it makes it possible to discard unimportant predictors. \\
+
+
+
+
+The Lasso penalty takes the absolute model parameters. This leads to the large and small values being taken equally into account. In contrast to the ridge regression, it does not prioritize minimizing any particular model parameter. 
 
 \subsection{The Cost function}
 
@@ -447,7 +502,7 @@ It is rare that we get such data with this much noise. It is more reasonable to 
 
 
 \subsection{Lasso method analysis}
-We see that Lasso analysis for $\lambda$ agrees with the analysis with Ridge. We therefore can say that OLS approximation method is a good model for our data. Once again if we increase the noise in our vanilla data, we no longer get $\lambda = 0$ for Lasso. However, as discussed earlier, this is not necessary 
+We see that Lasso analysis for $\lambda$ agrees with the analysis with Ridge. We therefore can say that OLS approximation method is a good model for our data. Once again if we increase the noise in our vanilla data, we no longer get $\lambda = 0$ for Lasso. However, as discussed earlier, this is not necessary. 
 
 \subsection{Application on terrain data}
 
