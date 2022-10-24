@@ -44,3 +44,9 @@ for epoch in range(n_epochs):
         Beta = Beta - update
 
 print(Beta)
+y_predict = X @ Beta
+
+plt.plot(x, y, "o", label="real data")
+plt.plot(x, y_predict, "o", label="Prediction")
+plt.legend()
+plt.show()
