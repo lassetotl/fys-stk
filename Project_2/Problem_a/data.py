@@ -27,14 +27,15 @@ class DataPoints:
         #Hessian matrix:
         H = (2.0/self.n) * X.T @ X
         EigVal, EigVec = np.linalg.eig(H)
+        max_EigVal = np.max(EigVal)
         print(f"The eigenvalues for the current Hessian matrix are {EigVal}")
         print(f"If they are positive, then our cost function is a convex function")
 
-        return self.x, self.y, X
+        return self.x, self.y, X, max_EigVal
 
 
 
 
 if __name__ == '__main__':
     inst = DataPoints(100)
-    x, y, X = inst.output()
+    x, y, X, max_EigVal = inst.output()
