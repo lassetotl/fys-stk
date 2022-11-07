@@ -1,9 +1,11 @@
 import numpy as np
 from gradient import *
 
-def plain_gradient_adagrad(learn_rate, n_iterations, X, y, Beta):
+def plain_gradient_adagrad_momentum(learn_rate, n_iterations, X, y, Beta):
     n = np.shape(X)[0]
     epsilon  = 1e-13
+    change = 0.0
+    momentum = 0.3
     G = np.zeros(shape=(np.shape(X)[1],np.shape(X)[1]))
     for i in range(n_iterations):
         for j in range(i):
@@ -11,7 +13,8 @@ def plain_gradient_adagrad(learn_rate, n_iterations, X, y, Beta):
             G = g @ g.T
             new_learn_rate = learn_rate / (epsilon + np.sqrt(np.diagonal(G)))
             G_inverse = np.c_[new_learn_rate]
+            new_change = np.multiply(G_inverse, g) + momentum*change
+            change = new_change
             #learn_rate = new_learn_rate
-            update = np.multiply(G_inverse, g)
-            Beta = Beta - update
+            Beta = Beta - new_change
     return Beta
