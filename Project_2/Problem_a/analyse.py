@@ -60,6 +60,8 @@ def plain_GD_analysis():
     plt.plot(N, MSE2, label="plain gradient with momentum")
     plt.plot(N, MSE3, label="plain gradient with adagrad")
     plt.plot(N, MSE4, "--r", label="plain gradient with adagrad and momentum")
+    plt.xlabel("number of iterations")
+    plt.ylabel("MSE")
     plt.legend()
     plt.show()
 """
@@ -110,6 +112,8 @@ def SGD_analyse():
     plt.plot(N, MSE5, label="simple SDG with RMSProp method")
     plt.plot(N, MSE6, label="simple SDG with ADAM method")
     plt.grid(1)
+    plt.xlabel("number of epochs")
+    plt.ylabel("MSE")
     plt.legend()
     plt.show()
 #
@@ -119,5 +123,6 @@ def SGD_analyse():
 # SGD_analyse()
 # M = 20
 # SGD_analyse()
-# learn_rate = 0.1
-# SGD_analyse()
+learn_rate = 0.001
+SGD_analyse()
+plain_GD_analysis()
