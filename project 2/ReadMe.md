@@ -1,1 +1,1 @@
-:)
+The codes here refer to the project tasks they answer (ex. 'LinReg_BC.ipynb'). To be able to run these scripts they should be located in a folder with the files in the 'misc code' folder, that contains python scripts with functions and classes + data that we import in the main code.
