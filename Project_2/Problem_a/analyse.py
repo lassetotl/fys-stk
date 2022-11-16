@@ -117,12 +117,13 @@ def SGD_analyse():
     plt.legend()
     plt.show()
 #
-# M = 5
-# SGD_analyse()
+M = 50
+learn_rate = 0.001
+SGD_analyse()
 # M = 10
 # SGD_analyse()
 # M = 20
 # SGD_analyse()
-learn_rate = 0.001
-SGD_analyse()
-plain_GD_analysis()
+# learn_rate = 0.001
+# SGD_analyse()
+# plain_GD_analysis()
