@@ -4,7 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from p2_functions import MSE, FrankeFunction, create_X, sigmoid, RELU
+from p2_functions import MSE, R2, FrankeFunction, create_X, sigmoid, RELU
 
 from sklearn.metrics import accuracy_score
 
@@ -40,6 +40,7 @@ class FFNN_Regression:
 
         #storing loss every epoch
         self.MSE_ = np.zeros(self.epochs)
+        self.score_ = np.zeros(self.epochs)
 
         self.create_biases_and_weights()
 
@@ -91,11 +92,12 @@ class FFNN_Regression:
             self.feed_forward()
             self.backpropagation()
             self.MSE_[i] = MSE(self.Y_data, self.z_o)
+            self.score_[i] = R2(self.Y_data, self.z_o)
         # Plotting MSE for each epoch step
         epoch = np.linspace(0, self.epochs, self.epochs)
         plt.plot(epoch, self.MSE_, lw = 3,
         label = f'{self.activation}, $\eta = {self.eta}$, $\lambda = {self.lmbd}$, '+'$MSE_{min}$ = '+f'{round(np.min(self.MSE_),3)}')
-        return epoch, self.MSE_
+        return epoch, self.MSE_, self.score_
 
 class FFNN_Classification:
     def __init__(
@@ -190,5 +192,5 @@ class FFNN_Classification:
         # Plotting accuracy for each epoch step
         epoch = np.linspace(0, self.epochs, self.epochs)
         plt.plot(epoch, self.acc_, lw = 3,
-        label = f'{self.activation}, $\eta = {self.eta}$, $\lambda = {self.lmbd}$, '+'$MSE_{min}$ = '+f'{round(np.max(self.acc_),3)}')
+        label = f'{self.activation}, $\eta = {self.eta}$, $\lambda = {self.lmbd}$, '+'max = '+f'{round(np.max(self.acc_),3)}')
         return epoch, self.acc_, self.z_o, self.cost_
