@@ -1,34 +1,23 @@
-import numpy as np
-from grad import *
 from sigmoid import *
-def train(n, n_epochs, n_iterations, M, X, y, w, b, lmbda, eta):
-    """Trains the logistic regressor weights
-            using Stochastic gradient descent (Ridge or OLS depending on lmbda value)
+from gradient import *
+def SGD_train(M, n_epochs, X, y, w, b, lmbd_, learning_rate_):
+    n = np.shape(X)[0] #number of datapoints
+    m = int(n/M) #number of minibatches
 
-    """
-    data_indices = np.arange(n)
-    #errors = []
     for epoch in range(n_epochs):
-        for j in range(n_iterations):
-            # pick datapoints with replacement
-            chosen_datapoints = np.random.choice(
-                data_indices, size=M, replace=False
-            )
+        for i in range(m):
+            random_index = M * np.random.randint(m)
+            X_batch = X[random_index:random_index+M]
+            y_batch = y[random_index:random_index+M]
 
-            # minibatch training data
-            X_k = X[chosen_datapoints]
-            y_k = y[chosen_datapoints]
+            var = X_batch @ w + b
+            P = sigmoid(var) #probability
+            grad_w, grad_b = gradient(X_batch, y_batch, P)
 
-            probability = sigmoid(X_k @ w + b)
-            dw, db = grad(X_k, y_k, probability)
+            grad_w += lmbd_ * w
+            grad_b += lmbd_ * b
 
+            w -= learning_rate_ * grad_w
+            b -= learning_rate_ * grad_b
 
-            # dw += lmbda * w
-            # db += lmbda * b
-
-            w -= eta * dw
-            b -= eta * db
-
-        ytilde = sigmoid(X @ w + b)
-        #errors.append(self.cost_func(self.sigmoid(X @ w + b)))
-    return ytilde#, errors
+            return w, b
