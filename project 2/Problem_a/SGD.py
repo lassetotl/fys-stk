@@ -2,7 +2,7 @@ import numpy as np
 from gradient import *
 from learning_schedule import *
 
-def SGD(M, n_epoch, learn_rate, X, y, Beta):
+def SGD(M, n_epoch, learn_rate, X, y, Beta, lmbd):
     n = np.shape(X)[0]
     m = int(n/M) #number of minibatches
     t0 = 1.0
@@ -14,7 +14,7 @@ def SGD(M, n_epoch, learn_rate, X, y, Beta):
             random_index = M * np.random.randint(m) #Pick the random index
             X_batch = X[random_index:random_index+M]
             y_batch = y[random_index:random_index+M]
-            g = (1/M) * gradient(n, X_batch, y_batch, Beta)
+            g = (1/M) * gradient(n, X_batch, y_batch, Beta, lmbd)
             learn_rate = learning_schedule(epoch*m + i, t0, t1)
             Beta = Beta - learn_rate*g
     return Beta

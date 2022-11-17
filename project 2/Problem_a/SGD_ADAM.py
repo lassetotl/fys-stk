@@ -5,7 +5,7 @@ from learning_schedule import *
 
 
 
-def SGD_ADAM(M, n_epochs, learn_rate, X, y, Beta):
+def SGD_ADAM(M, n_epochs, learn_rate, X, y, Beta, lmbd):
     n = np.shape(X)[0]
     m = int(n/M) #number of minibatches
     epsilon  = 1e-8
@@ -22,7 +22,7 @@ def SGD_ADAM(M, n_epochs, learn_rate, X, y, Beta):
             random_index = M*np.random.randint(m)
             X_minibatch = X[random_index:random_index + M]
             y_minibatch = y[random_index:random_index + M]
-            g = (1/M) * gradient(n, X_minibatch, y_minibatch, Beta)
+            g = (1/M) * gradient(n, X_minibatch, y_minibatch, Beta, lmbd)
             prev_G = G
             G = G + (g @ g.T)
             G_new = (rho * prev_G + (1 - rho) * G)

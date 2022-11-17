@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from gradient import *
 
-def SGD_adagrad_momentum(M, n_epochs, learn_rate, X, y, Beta):
+def SGD_adagrad_momentum(M, n_epochs, learn_rate, X, y, Beta, lmbd):
     n = np.shape(X)[0]
     m = int(n/M) #number of minibatches
     epsilon  = 1e-8
@@ -15,7 +15,7 @@ def SGD_adagrad_momentum(M, n_epochs, learn_rate, X, y, Beta):
             random_index = M*np.random.randint(m)
             X_minibatch = X[random_index:random_index + M]
             y_minibatch = y[random_index:random_index + M]
-            g = (1/M) * gradient(n, X_minibatch, y_minibatch, Beta)
+            g = (1/M) * gradient(n, X_minibatch, y_minibatch, Beta, lmbd)
             G = G + (g @ g.T)
             G_inverse = np.c_[learn_rate / ( epsilon + np.sqrt(np.diagonal(G)) )]
             new_change = np.multiply(G_inverse, g) + momentum*change
