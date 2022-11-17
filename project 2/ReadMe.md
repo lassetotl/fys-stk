@@ -1,1 +1,9 @@
-The codes here refer to the project tasks they answer (ex. 'LinReg_BC.ipynb'). To be able to run these scripts they should be located in a folder with the files in the 'misc code' folder, that contains python scripts with functions and classes + data that we import in the main code.
+## Content of this folder
+
+### Report (pdf and tex)
+
+### LinReg_BC.ipynb
+Jupyter notebook that applies the FFNN_Regression class to answer task B and C in project 2. Imports functionalities from python scripts and .npy datasets in the 'misc code' folder, must be run with these in the same file location.
+
+### ClassificationNetwork_D.ipynb
+Jupyter notebook that applies the FFNN_Classification class to answer task D. Imports functionalities from python scripts in the 'misc code' folder, must be run with these in the same file location.
