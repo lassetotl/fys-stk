@@ -14,12 +14,15 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 data, target = load_breast_cancer(return_X_y=True)
 train_data, test_data, train_target, test_target = train_test_split(data, target, test_size=0.2)
 
+#Defining the function for analysis
 def analysis(X_test, X_train, y_test, y_train, data):
     learning_rate = np.logspace(-3, 0, 10)
     lmbd = np.logspace(-3, 0, 10)
+    learning_rate = learning_rate.round(decimals=3)
+    lmbd = lmbd.round(decimals=3)
 
     M = 10 #Batch size
-    n_epochs = 50 #number of epochs
+    n_epochs = 70 #number of epochs
     features = X_train.shape[1]
     w = np.zeros([features, 1])
     b = 0
@@ -42,18 +45,20 @@ def analysis(X_test, X_train, y_test, y_train, data):
 
             train_check[i][j] = accuracy_score(y_train.reshape(pred_train.shape), pred_train)
             test_check[i][j] = accuracy_score(y_test.reshape(pred_test.shape), pred_test)
-    return train_check, test_check
+
+    fig, axis = plt.subplots(2)
+    sns.heatmap(test_check, xticklabels=learning_rate, yticklabels=lmbd, annot=True, ax=axis[0], cmap="viridis")
+    plt.ylabel("lambda")
+    plt.xlabel("learning rate")
+    sns.heatmap(train_check, xticklabels=learning_rate, yticklabels=lmbd, annot=True, ax=axis[1], cmap="viridis")
+    plt.ylabel("lambda")
+    plt.xlabel("learning rate")
+    axis[0].set_title("Test dataset")
+    axis[1].set_title("Train dataset")
+    plt.show()
 
 
 
 
-train_check, test_check = analysis(test_data, train_data, test_target, train_target, data)
 
-sns.heatmap(test_check, annot=True, cmap="viridis")
-plt.xlabel("log(lambda)")
-plt.ylabel("log(learning rate)")
-plt.show()
-sns.heatmap(train_check, annot=True, cmap="viridis")
-plt.xlabel("log(lambda)")
-plt.ylabel("log(learning rate)")
-plt.show()
+analysis(test_data, train_data, test_target, train_target, data)

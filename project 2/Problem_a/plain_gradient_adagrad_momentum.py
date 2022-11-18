@@ -15,6 +15,5 @@ def plain_gradient_adagrad_momentum(learn_rate, n_iterations, X, y, Beta, lmbd):
             G_inverse = np.c_[new_learn_rate]
             new_change = np.multiply(G_inverse, g) + momentum*change
             change = new_change
-            #learn_rate = new_learn_rate
             Beta = Beta - new_change
     return Beta

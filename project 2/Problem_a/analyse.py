@@ -36,7 +36,7 @@ n_epoch = 70 #number of epochs
 Doing some heatmap
 """
 def heatmap():
-    learning_rate = np.linspace(-3, 0, 10)
+    learning_rate = np.logspace(-3, 0, 10)
     lmbd = np.logspace(-3, 0, 10)
     learning_rate = learning_rate.round(decimals=3)
     lmbd = lmbd.round(decimals=3)
@@ -51,8 +51,8 @@ def heatmap():
     check = check/(np.max(check))
     df = pd.DataFrame(data=check)
     sns.heatmap(df, xticklabels=learning_rate, yticklabels=lmbd, annot=True, fmt='.2g')
-    plt.xlabel("lambdas")
-    plt.ylabel("learning rates")
+    plt.ylabel("lambdas")
+    plt.xlabel("learning rates")
     plt.show()
 
 """
@@ -155,16 +155,8 @@ def SGD_analyse():
     plt.title("Stochastic gradient descent with extensions")
     plt.legend()
     plt.show()
-#
-# M = 50
-#learn_rate = 0.001
-#SGD_analyse()
-# M = 10
-# SGD_analyse()
-# M = 20
-# SGD_analyse()
-learn_rate = 0.001
 
-# SGD_analyse()
+
 plain_GD_analysis()
-#heatmap()
+SGD_analyse()
+heatmap()

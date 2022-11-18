@@ -11,7 +11,6 @@ def plain_gradient_adagrad(learn_rate, n_iterations, X, y, Beta, lmbd):
             G = g @ g.T
             new_learn_rate = learn_rate / (epsilon + np.sqrt(np.diagonal(G)))
             G_inverse = np.c_[new_learn_rate]
-            #learn_rate = new_learn_rate
             update = np.multiply(G_inverse, g)
             Beta = Beta - update
     return Beta
