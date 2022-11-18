@@ -7,3 +7,5 @@ Jupyter notebook that applies the FFNN_Regression class to answer task B and C i
 
 ### ClassificationNetwork_D.ipynb
 Jupyter notebook that applies the FFNN_Classification class to answer task D. Imports functionalities from python scripts in the 'misc code' folder, must be run with these in the same file location.
+
+(...)
