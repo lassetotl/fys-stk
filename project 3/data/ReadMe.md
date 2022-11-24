@@ -2,7 +2,7 @@
 
 ### Heart_cleveland_upload.csv
 
-File contains the dataset gathered in Cleveland specifically, with categorical feature values converted to numerical. Condition given in binary. 
+File contains the UCI heart disease dataset gathered in Cleveland specifically, with categorical feature values converted to numerical. Condition given in binary. 
 
 ### Heart_disease_uci.csv
 
