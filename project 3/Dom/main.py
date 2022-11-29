@@ -12,7 +12,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 data = '../data/Preprocessed_heart_data.npy'
-data_train, data_test, target_train, target_test = np.load(data, allow_pickle=True)
+data_all = '../data/All_heart_data.npy'
+data_train, data_test, target_train, target_test = np.load(data_all, allow_pickle=True)
 
 # target_train1 = np.zeros((237))
 # for i in range(len(target_train)):
