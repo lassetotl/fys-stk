@@ -17,6 +17,9 @@ from sklearn import datasets
 
 import warnings
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 #suppress warnings
 warnings.filterwarnings('ignore')
 
@@ -41,6 +44,8 @@ FIKK 90% ved å ha learning_r = 0.01, lmbd = 0.01, epochs = 2000, batch_size = 2
 layer1 n_neurons = 50, layer2 n_neurons = 20, layer3 n_neurons = 20,
 activation funk on hidden layers: relu, acitvation funk on output layer: softmax
 optimizer:adam
+
+fikk også 88% med lr=0.1 og lmbs = 0.001
 """
 data = '../data/Preprocessed_heart_data.npy'
 data_all = '../data/All_heart_data.npy'
@@ -84,11 +89,14 @@ def create_neural_network_keras(n_neurons_layer1, n_neurons_layer2, n_categories
     return model
 
 DNN_keras = np.zeros((len(eta_vals), len(lmbd_vals)), dtype=object)
+#
+# sns.set()
+# train_accuracy = np.zeros((len(eta_vals), len(lmbd_vals)))
+# test_accuracy = np.zeros((len(eta_vals), len(lmbd_vals)))
 
-sns.set()
-train_accuracy = np.zeros((len(eta_vals), len(lmbd_vals)))
-test_accuracy = np.zeros((len(eta_vals), len(lmbd_vals)))
-
+# NN = create_neural_network_keras(n_neurons_layer1, n_neurons_layer2, n_categories, eta=0.01, lmbd=0.01)
+# NN.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size, verbose=0)
+# scores = NN.evaluate(X_test, Y_test)
 for i, eta in enumerate(eta_vals):
     for j, lmbd in enumerate(lmbd_vals):
         DNN = create_neural_network_keras(n_neurons_layer1, n_neurons_layer2, n_categories, eta=eta, lmbd=lmbd)
