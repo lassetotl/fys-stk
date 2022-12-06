@@ -35,6 +35,16 @@ class Build:
         return np.argmax(probabilities, axis=1)
 
     def onehot(self, integer_vector):
+        """
+        Instead of having values as single integer, we convert them into binary representations.
+        Example:
+        3 = (00100)
+        2 = (01000)
+        5 = (00001)
+        etc.
+        This is called one-hot encoding, it ensures that machine learning
+        does not assume that higher numbers are more important.
+        """
         n_inputs = len(integer_vector)
         n_categories = int(np.max(integer_vector) + 1)
         onehot_vector = np.zeros([n_inputs, n_categories])
@@ -52,9 +62,6 @@ class Build:
         #We use softmax output
         exp_term = np.exp(self.z_o)
         probabilities = exp_term / np.sum(exp_term, axis=1, keepdims=True)
-
-        #We wish to have an array in same shape as target array, this predict
-        #array contains number which our FFNN predicted with highes probabilities.
 
 
         return probabilities
