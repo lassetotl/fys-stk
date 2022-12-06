@@ -24,18 +24,18 @@ target_test = to_categorical(target_test)
 #variables and hyperparameters
 epochs = 300
 #batch_size = 100
-batch_size = np.linspace(10, 200, 20,dtype='int64')
+#batch_size = np.linspace(10, 200, 20,dtype='int64')
 #n_neurons = 20
-n_neurons = np.linspace(5, 80, 16,dtype=np.int64)
-n_categories = 2
+#n_neurons = np.linspace(5, 80, 16,dtype=np.int64)
+#n_categories = 2
 #n_layers = 1
-n_layers = np.linspace(1,10,10,dtype=np.int64)
+#n_layers = np.linspace(1,10,10,dtype=np.int64)
 
 eta = 0.01
 lmbd = 0.01
 
-
-def create_NN(n_neurons, n_categories, n_layers, eta, lmbd):
+np.random.seed(0)
+def create_NN_search(n_neurons, n_categories, n_layers, eta, lmbd):
     for i, a in enumerate(n_layers):
         for j, b in enumerate(batch_size):
             for k, c in enumerate(n_neurons):
@@ -49,12 +49,16 @@ def create_NN(n_neurons, n_categories, n_layers, eta, lmbd):
 
                 analyse_file = open("analyse.txt","a")
                 analyse_file.write(f"n_layers: {a}, batch_size:{b}, n_neurons:{c} gives score of: {scores} \n")
-
-
-
     return model
 
-model = create_NN(n_neurons, n_categories, n_layers, eta, lmbd)
-# model.fit(data_train, target_train, epochs=epochs, batch_size=batch_size, verbose=1)
-# scores = model.evaluate(data_test, target_test)
-# print(scores)
+def create_NN(n_neurons, n_categories, n_layers, eta, lmbd):
+    model = Sequential() #initiating the network model
+    model.add(Dense(n_neurons,activation='relu',kernel_regularizer=regularizers.l2(lmbd)))
+    model.add(Dense(n_categories, activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam',metrics=['accuracy'])
+    return model
+
+model = create_NN(n_neurons=10, n_categories=2, n_layers=1, eta=0.01, lmbd=0.01)
+model.fit(data_train, target_train, epochs=1000, batch_size=70, verbose=1)
+scores = model.evaluate(data_test, target_test)
+print(scores)

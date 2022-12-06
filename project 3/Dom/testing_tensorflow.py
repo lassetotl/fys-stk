@@ -58,9 +58,9 @@ Y_test=to_categorical(Y_test)
 
 
 
-epochs = 2000
-batch_size = 200
-n_neurons_layer1 = 50
+epochs = 1000
+batch_size = 70
+n_neurons_layer1 = 10
 n_neurons_layer2 = 20
 
 
@@ -72,8 +72,8 @@ def create_neural_network_keras(n_neurons_layer1, n_neurons_layer2, n_categories
     #print(n_neurons_layer3)
     model = Sequential()
     model.add(Dense(n_neurons_layer1, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
-    model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
-    model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
+    #model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
+    #model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
     # model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
     # model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
     # model.add(Dense(n_neurons_layer2, activation='relu', kernel_regularizer=regularizers.l2(lmbd)))
