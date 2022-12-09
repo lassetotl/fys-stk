@@ -1,5 +1,5 @@
 ### data
-Folder that contains various files that are called in the analysis.
+Folder that contains various files that are called in the notebooks and python scripts.
 
 ### Dataprep_A.ipynb
 Jupyter notebook that covers our data preparation with pandas, incl. correlation analysis and feature extraction.
