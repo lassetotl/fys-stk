@@ -13,6 +13,8 @@ The project makes use of the following libraries:
 - `matplotlib`
 - `time`
 - `seaborn`
+- `pandas`
+- `sklearn`
 - `XXX: Insert all libraries used when project is complete.`
 
 ## Running the code 
