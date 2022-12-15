@@ -2,11 +2,11 @@
 
 ### Heart_cleveland_upload.csv
 
-File contains the UCI heart disease dataset gathered in Cleveland specifically, with categorical feature values converted to numerical. Condition given in binary. 
+File contains the UCI heart disease dataset gathered in Cleveland specifically, with categorical feature values converted to numerical. Condition given in binary. This dataset is used in the dataprep notebook and in the development of our models.
 
 ### Heart_disease_uci.csv
 
-Modified version containing all datasets from Cleveland, Hungary, Switzerland and VA Long Beach. Categorical values as strings, condition as multiclass (0,1,2,3,4).
+Modified version containing all datasets from Cleveland, Hungary, Switzerland and VA Long Beach. Categorical values as strings, condition as multiclass (0,1,2,3,4). Not utilized in final models for this project.
 
 ### Heart_data_nofbs.npy
 
