@@ -65,9 +65,7 @@ def biasvar(method, solver, max_complexity):
             solver: The linear regression solver you want to use 
             n: complexity 
         Output: 
-            error 
-            bias 
-            variance 
+            error (mean squared error), bias and variance 
     """
     n_boostraps = 100
 
@@ -95,10 +93,11 @@ def biasvar(method, solver, max_complexity):
                 z_pred[:, k] = solver.fit(X_, z_).predict(X_test_).ravel() 
 
             elif method == 'neuralnetwork': 
+                # hidden_layers = (n+1, n+1, n+1)
                 hidden_layers = (n+1, n+1)
-                # Strength of L2 regularization term. The term is divided by the sample size when added to the loss, default = 0.0001 
-                l2 = 10 
-                solver = MLPRegressor(hidden_layer_sizes=hidden_layers, activation='relu', solver ='lbfgs', alpha=l2, max_iter=3000)
+                # hidden_layers = (n+1)
+                lr = 0.01
+                solver = MLPRegressor(hidden_layer_sizes=hidden_layers, activation='relu', solver='adam', max_iter=1000)
                 z_pred[:, k] = solver.fit(X_, z_).predict(X_test_).ravel() 
 
             elif method == 'deeplearning': 
@@ -112,7 +111,8 @@ def biasvar(method, solver, max_complexity):
         # Calculate MSE, bias and variance 
         error[n] = np.mean( np.mean((z_test_.reshape(-1, 1) - z_pred)**2, axis=1, keepdims=True) )
         bias[n] = np.mean( (z_test_.reshape(-1, 1) - np.mean(z_pred, axis=1, keepdims=True))**2 )
-        variance[n] = np.mean( np.var(z_pred, axis=1, keepdims=True) )
+        # variance[n] = np.mean( np.var(z_pred, axis=1, keepdims=True) )
+        variance[n] = np.mean((z_pred - np.mean(z_pred, axis = 1, keepdims = True))**2)
 
     return error, bias, variance 
 
@@ -164,16 +164,18 @@ def plot_deeplearning(save=False):
     """ Plots the bias-variance and MSE for MLP for 
         two hidden layers with n = 10 nodes 
     """
-    nodes = 14 # number of nodes 
-    # order = np.array([b+1 for b in range(n)])
-    hidden_neurons = np.linspace(1, nodes+1, nodes)
-
+    nodes = 40 # number of nodes 
+    neurons = np.linspace(1, nodes+1, nodes)
     error, bias, variance = biasvar(method='neuralnetwork', solver=None, max_complexity=nodes)
 
+    # hidden_layers = 10
+    # error, bias, variance = biasvar(method='neuralnetwork', solver=None, max_complexity=hidden_layers)
+    # neurons = np.linspace(1, hidden_layers+1, hidden_layers)
+    
     fig = plt.figure(figsize = (6.5, 5)) 
-    plt.plot(hidden_neurons, error-sigma**2, color="k", label='Error',    linewidth = 2)
-    plt.plot(hidden_neurons, bias-sigma**2,  color="g", label='Bias',     linewidth = 1.5)
-    plt.plot(hidden_neurons, variance,       color="r", label='Variance', linewidth = 1.5)
+    plt.plot(neurons, error-sigma**2, color="k", label='Error',    linewidth = 2)
+    plt.plot(neurons, bias-sigma**2,  color="g", label='Bias',     linewidth = 1.5)
+    plt.plot(neurons, variance,       color="r", label='Variance', linewidth = 1.5)
     plt.xlabel('Model Complexity', fontsize = 15)
     plt.ylabel('Error', fontsize = 15)
     plt.legend(); plt.grid(1)
@@ -221,3 +223,4 @@ def plot_ensemble(save=False):
 plot_linreg(save=False)
 plot_deeplearning(save=False)
 plot_ensemble(save=False)
+
