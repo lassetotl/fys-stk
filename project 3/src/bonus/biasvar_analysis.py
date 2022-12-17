@@ -162,15 +162,11 @@ def plot_linreg(save=False):
 
 def plot_deeplearning(save=False): 
     """ Plots the bias-variance and MSE for MLP for 
-        two hidden layers with n = 10 nodes 
+        two hidden layers with n = 30 nodes 
     """
     nodes = 40 # number of nodes 
     neurons = np.linspace(1, nodes+1, nodes)
     error, bias, variance = biasvar(method='neuralnetwork', solver=None, max_complexity=nodes)
-
-    # hidden_layers = 10
-    # error, bias, variance = biasvar(method='neuralnetwork', solver=None, max_complexity=hidden_layers)
-    # neurons = np.linspace(1, hidden_layers+1, hidden_layers)
     
     fig = plt.figure(figsize = (6.5, 5)) 
     plt.plot(neurons, error-sigma**2, color="k", label='Error',    linewidth = 2)
@@ -186,7 +182,7 @@ def plot_deeplearning(save=False):
 
 def plot_ensemble(save=False): 
     """ Plots the bias-variance and MSE for decision trees and 
-        the rando forest regressor 
+        the random forest regressor 
     """
     depth = 10 # max depth 
     hidden_neurons = np.linspace(1, depth+1, depth)
