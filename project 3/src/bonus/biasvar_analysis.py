@@ -138,6 +138,8 @@ def plot_linreg(save=False):
         plt.show()
 
     ## Ridge 
+    n = 25
+    order = np.array([b+1 for b in range(n)])
     error_ridge, bias_ridge, variance_ridge = biasvar(method='linreg', solver=Ridge(alpha=1e-4), max_complexity=n)
 
     # fig, (ax1, ax2) = plt.subplots(1, 2, figsize = (13, 5)) 
