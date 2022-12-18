@@ -37,8 +37,11 @@ Folder containing results produced, as well as a subfolder `bonus` containing th
 ### src 
 Folder that contains the codes used to produce results, as well as a subfolder `bonus` containing the codes for the bias-variance analysis. 
 
+- `Building_own_FFNN.py` : Python Class which is our own writte backbone for Feed forwards neural network. This class has function for encoding for onehot vectors, feed forward function, backpropagation and training function for our network. It also includes function for sigmoid function and a function that calculated the predictions. 
 - `Dataprep_A.ipynb`: Jupyter notebook that covers our data preparation with pandas, incl. correlation analysis and feature extraction.
 - `Random_Forest_Analysis.ipynb`: Notebook displaying the development of a boosted random forest model for predicting heart disease diagnosis using scikit learn functionalities.
+- `Tensorflow_FFNN.py` :  Python script that imports tensorflow library and performs feed forward neural network. There are two function, first function "create_NN" simply performs neural network, while the second function "create_NN_search" performs a grid seatch for optimal architecture.
+- `imports_from_ownFFNN.py` : Python scirpt which is used to import from "Building_own_FFNN.py" as does a grid search for finding optimal hyper-parameters.
 
 ## Tests 
 No tests have been made for the core, but it was last ran with the operating system `Ubuntu 22.04 LTS`. 
