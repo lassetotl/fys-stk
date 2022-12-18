@@ -266,7 +266,7 @@ This one-hot encoding ensures that machine learning does not assume that higher 
 Feed Forward Neural Network (FFNN) will be the first machine learning method that we will apply to the data-set. We will start off by writing our own FFNN algorithm, and then compare the results by using TensorFlow python module.
 \vspace{3mm}
 \\
-When defining the neural network architecture, we define a network that consist of an input layer, one or more hidden layers, and an output layer. The input layer contains a number of neurons equal to the number of the features. In our case, we have 13 features. The hidden layer containes a number of neurons determined based on the complexity of the data. However, we will be using 90 neurons and one hidden layer as a starting point. We will then try different values and see how our neural network performs. Since this is a classification problem, meaning that we either have a true or false statement for a patient having a heart disease, our output layer contains a single neuron. This neuron will have value of 0 indicating the absence of heart disease and a value of 1 indicating the presence of heart disease.
+When defining the neural network architecture, we define a network that consist of an input layer, one or more hidden layers, and an output layer. The input layer contains a number of neurons equal to the number of the features. In our case, we have 13 features. The hidden layer contains a number of neurons determined based on the complexity of the data. However, we will be using 90 neurons and one hidden layer as a starting point. We will then try different values and see how our neural network performs. Since this is a classification problem, meaning that we either have a true or false statement for a patient having a heart disease, our output layer contains a single neuron. This neuron will have value of 0 indicating the absence of heart disease and a value of 1 indicating the presence of heart disease.
 \vspace{3mm}
 \\
 When writing our own script for FFNN, we also have to  define some hyper-parameters. These hyper-parameters are
@@ -288,7 +288,7 @@ However, in order to train FFNN, we need an optimizer to find the best values fo
 We wish to compare the results with TensorFlow built in library. Therefore, we first import the library, and define input and target data and feed it to the library. Once again we use one-hot decoding for the targets. 
 \vspace{3mm}
 \\
-We also wish to experiment with different architectures by trying out different number of hidden layers, and different number of neurons for each layers. Additionaly, we wish to test out different activation functions such as Sigmoid, ReLu, Tanh and softmax function. We will be also testing different optimizers, such as Stochastic gradient descent (SGD), Adam, RMSprop and Adagrad. 
+We also wish to experiment with different architectures by trying out different number of hidden layers, and different number of neurons for each layer. Additionally, we wish to test out different activation functions such as Sigmoid, ReLu, Tanh and softmax function. We will also be testing different optimizers, such as Stochastic gradient descent (SGD), Adam, RMSprop and Adagrad. 
 
 
 
@@ -350,10 +350,10 @@ By writing our own Feed Forward Neural network, and doing a grid search for the 
 By having 56\% as accuracy rate from our FFNN, we can say that our neural network performs poorly. We have included only some of the values in table \ref{table:grid-search}, and we can see that most of them have accuracy rate of 53\%. It seems that our model guesses the output, and gets it wrong and right half of the time. This is not a good model. Additionally, since we are using stochastic gradient descent with momentum as our optimizer, we expect the learning to be a larger number than 0.00001. This is not the case here. 
 \vspace{3mm}
 \\
-By running the gird-search multiple times, we see that the accuracy rates for the same values of hyper-parameters differ. This might be because our model is poor and it simple guesses the output randomly everytime. Meaning that in the training part where we use backpropagation to find the optimal weight and biases, we find different values for weight and biases every time. 
+By running the grid-search multiple times, we see that the accuracy rates for the same values of hyper-parameters differ. This might be because our model is poor and it simply guesses the output randomly every time. Meaning that in the training part where we use backpropagation to find the optimal weights and biases, we find different values for weights and biases every time. 
 \vspace{3mm}
 \\
-We wish now to compare the results by using Tensorflow library. We have used the same architecture, and we choose to find the learning rate and the regularization factor which gave us the best results in table \ref{table:grid-search}. 
+We now wish to compare the results by using the Tensorflow library. We have used the same architecture, and we choose to find the learning rate and the regularization factor which gave us the best results in table \ref{table:grid-search}. 
 \vspace{3mm}
 \\
 By using tensorflow, we get \textbf{the accuracy rate up to 81\%}. However, by increasing the number of epochs, we were able to achieve higher accuracy rates. For example, when we ran the FFNN with tensorflow using 2000 epochs, we achieved an \textbf{accuracy rate of 85\%}. However, this result was not consistent across all runs. In some cases, the accuracy rate dropped back to 81\%, even with 2000 epochs. This inconsistency may be due to the random mini-batch selection used in the optimization of weights and biases. However, we observed that in most cases, we achieved accuracy to be around 85\% with higher number of epochs. 
@@ -410,10 +410,10 @@ The difference between the true positive/negative accuracy in our case is not la
 Two machine learning models were developed in the study: a classification feedforward neural network with back-propagation, and a random forest classifier with adaptive boosting. The neural network model achieved an accuracy up to 91\% on the test set, while the random forest model achieved an accuracy of 88\% on the test set. The random forest model also had a true positive prediction accuracy of 89\%.
 \vspace{3mm}
 \\
-However, we were not sure what exactly all attributions in the feature list do, as for example oldpeak and slope, we still managed to make them useful for the model. The model seemed to become better by including them. Meaning that we do not need a deep understanding of all the features to make a good model.
+Even though we weren't sure what all of the attributions in the feature list represented, such as oldpeak and slope, we were able to make them useful for the model. By including them, the model appeared to improve. That is, we do not need a deep understanding  of all of the features to build a decent model.
 \vspace{3mm}
 \\
-Another point of potential improvement is that we could work with the original, untreated data. The set used in our analysis seems to have been properly pre-processed already and little work was done on it ourselves. Looking at the entire data set we could evaluate for ourselves which attributes are interesting or not, 'smoking' (True/False) is an example of a missing attribute that could prove useful. More insight into cardiology could help us determine relevant attributes more efficiently.
+Another point of potential improvement is that we could work with the original, unprocessed data. The set used in our analysis seems to have been properly pre-processed, and little work was done on it ourselves. Looking at the entire data set we could evaluate for ourselves which attributes are interesting or not, 'smoking' (True/False) is an example of a missing attribute that could prove useful. More knowledge of cardiology could help us determine relevant attributes more efficiently.
 \vspace{3mm}
 \\
 We have demonstrated that the true positive accuracy in our random forest model is higher than the true negative accuracy, which is more favourable in medical diagnosis than the opposite case.
