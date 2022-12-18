@@ -27,6 +27,9 @@ The output from the bonus task (bias-variance analysis) can be run from the `src
 Note that the program takes a bit of time to run. 
 
 ## Contents 
+### analyse_results 
+Folder containing some output. 
+
 ### data
 Folder that contains various files that are called in the notebooks and python scripts.
 
