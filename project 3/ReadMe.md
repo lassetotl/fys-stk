@@ -20,11 +20,9 @@ The project makes use of the following libraries:
 - `tensorflow`
 
 ## Running the code 
-Run all code from the folder `src`. 
-
 The output from the main project is generated in the `.ipynb` files. 
 
-The output from the bonus task (bias-variance analysis) can be run from the same folder in your terminal using: 
+The output from the bonus task (bias-variance analysis) can be run from the `src` folder in your terminal using: 
 - `python3 bonus/biasvar_analysis.py`
 Note that the program takes a bit of time to run. 
 
@@ -35,7 +33,7 @@ Folder that contains various files that are called in the notebooks and python s
 ### doc
 Folder containing the `.pdf` and `.tex` files with the project report, for both project 3 and the bonus assignment. 
 
-### Figures 
+### figures 
 Folder containing results produced, as well as a subfolder `bonus` containing the figures for the bias-variance analysis. 
 
 ### src 
@@ -46,6 +44,7 @@ Folder that contains the codes used to produce results, as well as a subfolder `
 - `Random_Forest_Analysis.ipynb`: Notebook displaying the development of a boosted random forest model for predicting heart disease diagnosis using scikit learn functionalities.
 - `Tensorflow_FFNN.py` :  Python script that imports tensorflow library and performs feed forward neural network. There are two function, first function "create_NN" simply performs neural network, while the second function "create_NN_search" performs a grid seatch for optimal architecture.
 - `imports_from_ownFFNN.py` : Python script which is used to import from "Building_own_FFNN.py" as does a grid search for finding optimal hyper-parameters.
+- `bonus/biasvar_analysis`: Python scrips for the bias-variance analysis for OLS, Ridge, FFNN, Decision Trees, and Random Forests. 
 
 ## Tests 
 No tests have been made, but it was last ran with the operating system `Ubuntu 22.04 LTS`. 
