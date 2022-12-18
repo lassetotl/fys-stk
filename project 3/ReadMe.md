@@ -1,7 +1,7 @@
-The third project in Applied Data Analysis and Machine Learing by Lasse Totland, Domantas Sakalys, Synne Mo Sandnes, and Semya A. Tønnessen. 
+The third project in Applied Data Analysis and Machine Learning by Lasse Totland, Domantas Sakalys, Synne Mo Sandnes, and Semya A. Tønnessen. 
 
 ## Abstract 
-XXX: Insert abstract from pdf here 
+This report covers the development of two binary classification machine learning models for prediction of heart disease diagnosis using the 1988 Cleveland Clinic Foundation survey data on heart disease among hospital patients. The dataset contains 14 attributes relevant to our analysis and we determined that none of them should be extracted during preprocessing as all of them contributed positively on the prediction test accuracy of our models. Using a classification Feed Forward Neural Network with back-propagation (and activation functions RELU for one hidden layer and softmax for output layer) we achieved an accuracy of $0.91$ with learning rate $\eta = 0.01$ and regularization factor $\lambda = 0.001$ using hyperparameter analysis. Using a Random Forest Classifier with Adaptive Boosting (500 estimators) we achieved a test accuracy of $0.88$ with $\eta = 0.1$ and max tree depth of $1$ using hyperparameter analysis, as well as a $0.89$ true positive prediction accuracy. These results are comparable with established literature analysing the same dataset.
 
 ## Dependencies 
 Requires python3 
@@ -15,7 +15,7 @@ The project makes use of the following libraries:
 - `seaborn`
 - `pandas`
 - `sklearn`
-- `XXX: Insert all libraries used when project is complete.`
+- `keras`
 
 ## Running the code 
 Run all code from the folder `src`. 
