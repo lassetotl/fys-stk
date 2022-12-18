@@ -101,7 +101,7 @@ def biasvar(method, solver, max_complexity):
                 z_pred[:, k] = solver.fit(X_, z_).predict(X_test_).ravel() 
 
             elif method == 'deeplearning': 
-                model = solver(max_depth=n+1)
+                # model = solver(max_depth=n+1)
                 if solver == 'randomforest': 
                     model = RandomForestRegressor(max_depth=n+1)
                 elif solver == 'decision': 
@@ -166,7 +166,7 @@ def plot_deeplearning(save=False):
     """ Plots the bias-variance and MSE for MLP for 
         two hidden layers with n = 30 nodes 
     """
-    nodes = 40 # number of nodes 
+    nodes = 25 # number of nodes 
     neurons = np.linspace(1, nodes+1, nodes)
     error, bias, variance = biasvar(method='neuralnetwork', solver=None, max_complexity=nodes)
     
