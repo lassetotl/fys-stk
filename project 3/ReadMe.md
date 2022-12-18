@@ -15,7 +15,7 @@ The project makes use of the following libraries:
 - `seaborn`
 - `pandas`
 - `sklearn`
-- `XXX: Insert all libraries used when project is complete.`
+- `keras`
 
 ## Running the code 
 Run all code from the folder `src`. 
